@@ -1,19 +1,30 @@
 const express = require('express');
 const router = express.Router();
-const Contact = require('../server/db/models/Contact');
+const Contact = require('../server/db/models/Contact')
+
+
 
 router.route('/')
   .get((req, res) => {
+
     const id = req.query.user;
-    return Contact
-      .query({ where: { id: id } })
-      .fetchAll({ withRelated: ['created'] })
-      .then(contacts => {
-        return res.json(contacts)
-      })
-      .catch(err => {
-        console.log('err.message', err.message);
-      })
+    if (id) {
+
+      return Contact
+        .query({ where: { created_by: id } })
+        .fetchAll()
+        .then(contacts => {
+          return res.json(contacts)
+        })
+    } else {
+      return Contact
+        .fetchAll()
+        .then(contacts => {
+          return res.json(contacts)
+        })
+    }
+
+
   })
   .post((req, res) => {
     const {
@@ -57,6 +68,7 @@ router.route('/')
 
 router.route('/search/:term')
   .get((req, res) => {
+
     const term = req.params.term;
     return Contact
       .query({ where: { name: term } })
@@ -87,6 +99,7 @@ router.route('/:id')
   })
   .get((req, res) => {
     const id = req.params.id
+
     return Contact
       .query({ where: { id: id } })
       .fetch()

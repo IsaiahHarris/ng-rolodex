@@ -4,7 +4,7 @@ const User = require('../server/db/models/User');
 
 router.route('/')
   .get((req, res) => {
-    return User.fetchAll({withRelated: ['created']})
+    return User.fetchAll({ withRelated: ['created'] })
       .then(users => {
         return res.json(users)
       })
@@ -19,7 +19,7 @@ router.route('/profile')
     const id = req.query.user;
     return User
       .query({ where: { id: id } })
-      .fetch({withRelated: ['created']})
+      .fetchAll({ withRelated: ['created'] })
       .then(user => {
         return res.json(user)
       })
