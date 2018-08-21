@@ -6,7 +6,8 @@ router.route('/')
   .get((req, res) => {
     const id = req.query.user;
     return Contact
-      .fetchAll()
+      .query({ where: { id: id } })
+      .fetchAll({ withRelated: ['created'] })
       .then(contacts => {
         return res.json(contacts)
       })
