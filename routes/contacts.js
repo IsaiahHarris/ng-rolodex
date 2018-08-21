@@ -4,7 +4,24 @@ const Contact = require('../server/db/models/Contact');
 
 router.route('/')
   .get((req,res)=>{
-    return Contact.fetchAll({withRelated: ['created_by']})
+    const id = req.query.user;
+    return Contact
+    .query({where: {id:id}})
+    .fetchAll()
+    .then(contacts=>{
+      return res.json(contacts)
+    })
+    .catch(err=>{
+      console.log('err.message', err.message);
+    })
+  })
+
+  router.route('/search/:term')
+  .get((req,res)=>{
+    const term = req.params.term;
+    return Contact
+    .query({where:{name: term}})
+    .fetchAll()
     .then(contacts=>{
       return res.json(contacts)
     })

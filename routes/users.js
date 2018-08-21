@@ -13,20 +13,36 @@ router.route('/')
       })
   })
 
+
 router.route('/profile')
   .get((req, res) => {
     const id = req.query.user;
-    console.log('id', id);
     return User
-    .query({where: {id:id}})
-    .fetch()
-    .then(user=>{
-      return res.json(user)
-    })
-    .catch(err => {
-      console.log('err.message', err.message);
-    })
+      .query({ where: { id: id } })
+      .fetch()
+      .then(user => {
+        return res.json(user)
+      })
+      .catch(err => {
+        console.log('err.message', err.message);
+      })
   })
 
+router.route('/:id')
+  .put((req, res) => {
+    let id = req.params.id;
+    let { username, name, email, address } = req.body;
+    return new User({ id: id })
+      .save({ username, name, email, address })
+      .then(response => {
+        return response.refresh({ withRelated: ['created'] })
+      })
+      .then(user => {
+        res.json(user)
+      })
+      .catch(err => {
+        console.log('err.message', err.message);
+      })
+  })
 
 module.exports = router;
