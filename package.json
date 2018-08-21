@@ -1,0 +1,19 @@
+{
+  "name": "ng-rolodex",
+  "version": "1.0.0",
+  "description": "Angular 2+ Exercise",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/IsaiahHarris/ng-rolodex.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/IsaiahHarris/ng-rolodex/issues"
+  },
+  "homepage": "https://github.com/IsaiahHarris/ng-rolodex#readme"
+}
