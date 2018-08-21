@@ -11,9 +11,8 @@ exports.up = function(knex, Promise) {
     table.string('twitter').nullable();
     table.string('instagram').nullable();
     table.string('github').nullable();
-    table.integer('created_by').references('users.id')
+    table.integer('created_by').references('users.id').notNullable();
     table.timestamps(true, true);
-
   })
 };
 
