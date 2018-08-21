@@ -15,5 +15,10 @@
   "bugs": {
     "url": "https://github.com/IsaiahHarris/ng-rolodex/issues"
   },
-  "homepage": "https://github.com/IsaiahHarris/ng-rolodex#readme"
+  "homepage": "https://github.com/IsaiahHarris/ng-rolodex#readme",
+  "dependencies": {
+    "bookshelf": "^0.13.3",
+    "knex": "^0.15.2",
+    "pg": "^7.4.3"
+  }
 }

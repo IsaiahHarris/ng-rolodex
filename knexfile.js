@@ -1,5 +1,5 @@
 // Update with your config settings.
-
+const path = require('path');
 module.exports = {
 
   development: {
@@ -14,6 +14,7 @@ module.exports = {
       max: 10
     },
     migrations: {
+      directory: path.join(__dirname, 'server', 'db', 'migrations'),
       tableName: 'knex_migrations'
     }
   },
