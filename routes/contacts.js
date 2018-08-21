@@ -6,8 +6,7 @@ router.route('/')
   .get((req, res) => {
     const id = req.query.user;
     return Contact
-      .query({ where: { id: id } })
-      .fetchAll({ withRelated: ['created'] })
+      .fetchAll()
       .then(contacts => {
         return res.json(contacts)
       })
@@ -85,4 +84,17 @@ router.route('/:id')
         console.log('err.message', err.message);
       })
   })
+  .get((req, res) => {
+    const id = req.params.id
+    return Contact
+      .query({ where: { id: id } })
+      .fetch()
+      .then(contact => {
+        return res.json(contact)
+      })
+      .catch(err => {
+        console.log('err.message', err.message);
+      })
+  })
+
 module.exports = router;
