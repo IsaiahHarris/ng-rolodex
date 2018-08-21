@@ -96,5 +96,42 @@ router.route('/:id')
         console.log('err.message', err.message);
       })
   })
+  .put((req, res) => {
+    const id = req.params.id;
+    const {
+      name,
+      address,
+      mobile,
+      work,
+      home,
+      email,
+      twitter,
+      instagram,
+      github,
+      created_by
+    } = req.body
+
+    return new Contact({ id: id })
+      .save({
+        name,
+        address,
+        mobile,
+        work,
+        home,
+        email,
+        twitter,
+        instagram,
+        github,
+        created_by
+      })
+      .then(contact => {
+        return res.json(contact)
+      })
+      .catch(err => {
+        console.log('err.message', err.message);
+      })
+
+
+  })
 
 module.exports = router;
